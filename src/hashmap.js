@@ -1,7 +1,7 @@
 export class Hashmap {
-  constructor() {
-    let loadFactor = 0.75;
-    let capacity = 16;
+  constructor(capacity = 16) {
+    this.loadFactor = 0.75;
+    this.capacity = capacity;
   }
   hash(key) {
     let hashCode = 0;
@@ -9,7 +9,7 @@ export class Hashmap {
     const primeNumber = 31;
     for (let i = 0; i < key.length; i++) {
       hashCode = primeNumber * hashCode + key.charCodeAt(i);
-      hashCode = hashCode % 16;
+      hashCode = hashCode % this.capacity;
     }
 
     return hashCode;
