@@ -169,4 +169,18 @@ export class Hashmap {
     });
     return array;
   }
+  values() {
+    let array = [];
+    this.buckets.forEach((item) => {
+      if (item.headNode !== null) {
+        let currentNode = item.headNode;
+        array.push(currentNode.data["valueProp"]);
+        while (currentNode.next !== null) {
+          currentNode = currentNode.next;
+          array.push(currentNode.data["valueProp"]);
+        }
+      }
+    });
+    return array;
+  }
 }
