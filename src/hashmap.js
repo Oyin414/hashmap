@@ -1,11 +1,11 @@
 /*
-keys()
-returns an array containing all the keys in the hashmap
+values()
+returns an array containing all the values in the hashmap
   set an empty array 
 - first we need to loop through the this.buckets array 
 - and we need to check if the headnodes are empty for each item in the array
 - if the headnodes isn't empty then we need to loop through the linked list
-and for every key in the linked list add it to the array
+and for every value in the linked list add it to the array
 then return the array
 
 */
@@ -160,10 +160,10 @@ export class Hashmap {
     this.buckets.forEach((item) => {
       if (item.headNode !== null) {
         let currentNode = item.headNode;
-        array.push(currentNode);
+        array.push(currentNode.data["keyProp"]);
         while (currentNode.next !== null) {
           currentNode = currentNode.next;
-          array.push(currentNode);
+          array.push(currentNode.data["keyProp"]);
         }
       }
     });
