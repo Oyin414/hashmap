@@ -1,12 +1,10 @@
 /*
-length()
-returns the number of stored keys in the hashmap
-set an empty array variable
+clear()
+removes all entries in the Hashmap
 - first we need to loop through the this.buckets array 
 - and we need to check if the headnodes are empty for each item in the array
-- if the headnodes isn't empty go through the items in the linked list and add each of the keys to the empty array
+- if the headnodes isn't empty then set the headnodes to null
 
-- return the empty array.lenght
 */
 import { LinkedList, Node } from "./linkedlist.js";
 
@@ -146,5 +144,12 @@ export class Hashmap {
       }
     });
     return len.length;
+  }
+  clear() {
+    this.buckets.forEach((item) => {
+      if (item.headNode !== null) {
+        item.headNode = null;
+      }
+    });
   }
 }
