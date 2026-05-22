@@ -7,4 +7,4 @@ console.log(test.hash("apple"));
 
 console.log(test.set("apple", "red"));
 
-console.log(test.get("apple"));
+console.log(test.has("apple"));

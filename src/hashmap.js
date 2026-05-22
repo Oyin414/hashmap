@@ -1,13 +1,13 @@
 /*
-get(key)
-returns either value that's associated with the key or null
+has(key)
+returns either true or false
 - first we need to get the hashcode for the key
 - then using the index , we need to go to the bucket at that index 
-- then we check if the headnode at that index is null and if it is return null
+- then we check if the headnode at that index is null and if it is return false
 - otherwise we should loop through the nodes at that index using a while loop
     - stop when currentNode.next equals null or when the curentNode key equals key 
-    - either return none if the currentNode key doesn't equal the key 
-    - or return the value if it does
+    - either return false if the currentNode key doesn't equal the key 
+    - or return true if it does
 
 */
 import { LinkedList, Node } from "./linkedlist.js";
@@ -91,5 +91,19 @@ export class Hashmap {
       return null;
     }
     return currentNode.data["valueProp"];
+  }
+  has(key) {
+    let result = this.hash(key);
+    if (this.buckets[result].headNode === null) {
+      return false;
+    }
+    let currentNode = this.buckets[result].headNode;
+    while (currentNode.next !== null && currentNode.data["keyProp"] !== key) {
+      currentNode = currentNode.next;
+    }
+    if (currentNode.data["keyProp"] !== key) {
+      return false;
+    }
+    return true;
   }
 }
