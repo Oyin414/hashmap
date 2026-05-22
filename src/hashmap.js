@@ -1,18 +1,12 @@
 /*
-remove(key)
-returns either true while removing key or false
-- first we need to get the hashcode for the key
-- then using the index , we need to go to the bucket at that index 
-- then we check if the headnode at that index is null and if it is return false
-- otherwise we should loop through the nodes at that index using a while loop
-    - stop when currentNode.next equals null or when the curentNode key equals key 
-    - if current Node equals key , we need to get headnode again in another variable
-      loop until the before node equals node before the current node 
-      - then we need to check if the node after the current node is null 
-         if it's null then change the before node's next node to null
-         if it's not then change the before node's next node to the after node
-         - then return true
-      - otherwise return false
+length()
+returns the number of stored keys in the hashmap
+set an empty array variable
+- first we need to loop through the this.buckets array 
+- and we need to check if the headnodes are empty for each item in the array
+- if the headnodes isn't empty go through the items in the linked list and add each of the keys to the empty array
+
+- return the empty array.lenght
 */
 import { LinkedList, Node } from "./linkedlist.js";
 
@@ -138,5 +132,19 @@ export class Hashmap {
       return true;
     }
     return false;
+  }
+  length() {
+    let len = [];
+    this.buckets.forEach((item) => {
+      if (item.headNode !== null) {
+        let currentNode = item.headNode;
+        len.push(currentNode);
+        while (currentNode.next !== null) {
+          currentNode = currentNode.next;
+          len.push(currentNode);
+        }
+      }
+    });
+    return len.length;
   }
 }
