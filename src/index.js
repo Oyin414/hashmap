@@ -11,5 +11,5 @@ console.log(test.set("animal", "people"));
 console.log(test.set("nonani", "armani"));
 console.log(test.set("loveee", "love"));
 console.log(test.length());
-console.log(test.values());
+console.log(test.entries());
 console.log(test.length());
