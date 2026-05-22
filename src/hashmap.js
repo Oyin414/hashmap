@@ -1,12 +1,13 @@
 /*
-set(key,value)
-- let's make a final variable count that is loadFactor * capacity
-first check if key already exists , to do that
-- first get the index of the key by calling the hash(key) method
-- then using the index check if the headnode is null for that index 
-- it it's null then add the key as the headnode
-- if it's not then check in the linked list for that key and if it doesn't exist then add the key to the list
-- however if the key does exist then change the value to be the inputted value
+get(key)
+returns either value that's associated with the key or null
+- first we need to get the hashcode for the key
+- then using the index , we need to go to the bucket at that index 
+- then we check if the headnode at that index is null and if it is return null
+- otherwise we should loop through the nodes at that index using a while loop
+    - stop when currentNode.next equals null or when the curentNode key equals key 
+    - either return none if the currentNode key doesn't equal the key 
+    - or return the value if it does
 
 */
 import { LinkedList, Node } from "./linkedlist.js";
@@ -76,5 +77,19 @@ export class Hashmap {
         this.set(item.data["keyProp"], item.data["valueProp"]);
       });
     }
+  }
+  get(key) {
+    let result = this.hash(key);
+    if (this.buckets[result].headNode === null) {
+      return null;
+    }
+    let currentNode = this.buckets[result].headNode;
+    while (currentNode.next !== null && currentNode.data["keyProp"] !== key) {
+      currentNode = currentNode.next;
+    }
+    if (currentNode.data["keyProp"] !== key) {
+      return null;
+    }
+    return currentNode.data["valueProp"];
   }
 }
